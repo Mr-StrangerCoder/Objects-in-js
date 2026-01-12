@@ -15,7 +15,7 @@ function showTask(data= array){
       <th scope="row">${i+1}</th>
       <td>${task.name}</td>
       <td>${task.status}</td>
-      <td><button onclick = 'updateTask(i)'>Edit</button></td>
+      <td><button onclick = 'updateTask(${i})'>Edit</button></td>
       <td><button id = 'deleteBTN' onclick= 'deleteTask(${i})'>Delete</button></td>
     </tr>`).join("")
   
@@ -36,6 +36,8 @@ function addNewTask(){
   dataFromLocal.push(newTask)
   setLocal(dataFromLocal)
   showTask( dataFromLocal)
+  inputElmt.value = "";
+  
 }
 
 function deleteTask(i){
@@ -47,8 +49,6 @@ function deleteTask(i){
 
 function updateTask(i){
     const dataFromLocal = getFromLocal()
-
-   
     dataFromLocal[i].status = "Complete"
   setLocal(dataFromLocal)
   showTask( dataFromLocal)
